@@ -3095,6 +3095,54 @@ void dark_rangers_quiver( special_effect_t& effect )
   new dbc_proc_callback_t( effect.player, effect );
 }
 
+/**Soulwarped Seal of Wrynn
+    367950 trigger buff
+ */
+void soulwarped_seal_of_wrynn( special_effect_t& effect )
+{
+  if ( effect.player->type != PRIEST )
+  {
+    return;
+  }
+
+  struct lions_hope_cb_t : public dbc_proc_callback_t
+  {
+    lions_hope_cb_t( const special_effect_t& effect ) : dbc_proc_callback_t( effect.item, effect )
+    {
+    }
+
+    void trigger( action_t* a, action_state_t* s ) override
+    {
+      assert( rppm );
+      assert( s->target );
+
+      // TODO: figure out how to mod the rppm based on how it works in game
+      // see: bloodthirsty_instinct_cb_t in unique_gear_legion.cpp
+      double mod = 1;
+
+      if ( effect.player->sim->debug )
+      {
+        effect.player->sim->out_debug.printf( "Player %s adjusts %s rppm modifer: old=%.3f new=%.3f",
+                                              effect.player->name(), effect.name().c_str(), rppm->get_modifier(), mod );
+      }
+
+      rppm->set_modifier( mod );
+
+      dbc_proc_callback_t::trigger( a, s );
+    }
+  };
+
+  auto buff = buff_t::find( effect.player, "lions_hope" );
+  if ( !buff )
+  {
+    buff = make_buff( effect.player, "lions_hope", effect.player->find_spell( 367950 ) );
+  }
+
+  effect.custom_buff  = effect.player->buffs.lions_hope = buff;
+  effect.proc_flags2_ = PF2_ALL_HIT | PF2_PERIODIC_DAMAGE | PF2_PERIODIC_HEAL;
+  new lions_hope_cb_t( effect );
+}
+
 // Runecarves
 
 void echo_of_eonar( special_effect_t& effect )

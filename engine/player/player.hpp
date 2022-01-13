@@ -547,6 +547,9 @@ struct player_t : public actor_t
 
     // 9.1 Trinkets
     buff_t* reactive_defense_matrix;
+
+    // 9.2 Gear
+    buff_t* lions_hope; // Priest ring Soulwarped Seal of Wrynn buff
   } buffs;
 
   struct debuffs_t
