@@ -9938,11 +9938,11 @@ void shaman_t::init_action_list_elemental()
                                   "if=active_enemies>1&pet.storm_elemental.active&buff.bloodlust.up" );
     se_single_target->add_action( this, "Lava Burst", "if=buff.ascendance.up" );
     se_single_target->add_action( this, "Lava Burst", "if=cooldown_react" );
-    se_single_target->add_action( this, "Lightning Bolt", "if=pet.storm_elemental.active&buff.bloodlust.up" );
     se_single_target->add_action( this, "Icefury",
                                   "if=talent.icefury.enabled&!(maelstrom>75&cooldown.lava_burst.remains<=0)" );
     se_single_target->add_action( this, "Lava Burst", "if=cooldown_react&charges>talent.echo_of_the_elements.enabled" );
     se_single_target->add_action( this, "Frost Shock", "if=talent.icefury.enabled&buff.icefury.up" );
+    se_single_target->add_action( this, "Lightning Bolt", "if=pet.storm_elemental.active&buff.bloodlust.up" );
     se_single_target->add_action( "chain_harvest" );
     se_single_target->add_action( "fleshcraft,interrupt=1,if=soulbind.volatile_solvent" );
     se_single_target->add_talent( this, "Static Discharge", "if=talent.static_discharge.enabled" );
