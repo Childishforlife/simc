@@ -9936,9 +9936,9 @@ void shaman_t::init_action_list_elemental()
                                   "if=(spell_targets.chain_lightning>1)&(!dot.flame_shock.refreshable)" );
     se_single_target->add_action( this, "Chain Lightning",
                                   "if=active_enemies>1&pet.storm_elemental.active&buff.bloodlust.up" );
-    se_single_target->add_action( this, "Lightning Bolt", "if=pet.storm_elemental.active&buff.bloodlust.up" );
     se_single_target->add_action( this, "Lava Burst", "if=buff.ascendance.up" );
     se_single_target->add_action( this, "Lava Burst", "if=cooldown_react" );
+    se_single_target->add_action( this, "Lightning Bolt", "if=pet.storm_elemental.active&buff.bloodlust.up" );
     se_single_target->add_action( this, "Icefury",
                                   "if=talent.icefury.enabled&!(maelstrom>75&cooldown.lava_burst.remains<=0)" );
     se_single_target->add_action( this, "Lava Burst", "if=cooldown_react&charges>talent.echo_of_the_elements.enabled" );
